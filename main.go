@@ -31,7 +31,7 @@ func main() {
 	handler := c.Handler(r)
 
 	// Start the server
-	port := ":3000"
+	port := ":3030"
 	fmt.Printf("Server is running on http://localhost%s\n", port)
 	http.ListenAndServe(port, handler)
 }
