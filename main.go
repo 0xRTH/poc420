@@ -51,17 +51,8 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 	queryParams.Set("code", code)
 	targetURL += "?" + queryParams.Encode()
 
-	proxyURL, err := url.Parse("http://127.0.0.1:8080") // Replace with your proxy URL
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
 	// Create a custom HTTP client with proxy settings and redirect policy
 	client := &http.Client{
-		Transport: &http.Transport{
-			Proxy: http.ProxyURL(proxyURL),
-		},
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
 			// Do not follow redirects
 			return http.ErrUseLastResponse
